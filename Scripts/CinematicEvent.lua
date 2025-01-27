@@ -57,13 +57,7 @@ function GetWaitForFinish() return _waitForFinish end
 waitForFinish = GetWaitForFinish()
 
 --!SerializeField
---!Tooltip("A custom script on which to trigger a function")
-local _customScript:LuaScript = nil
-function GetCustomScript() return _customScript end
-customScript = GetCustomScript()
-
---!SerializeField
---!Tooltip("The function to trigger on the custom script")
-local _customFunction:string = ""
-function GetCustomFunction() return _customFunction end
-customFunction = GetCustomFunction()
+--!Tooltip("A custom string to attach to the CustomEventFactory event - choose anything")
+local _customEvent:string = ""
+function GetCustomEvent() return _customEvent end
+customEvent = GetCustomEvent()

@@ -1,5 +1,6 @@
 --!Type(Client)
 
+local cinematicSuiteEvents = require("CinematicSuiteEvents")
 --!SerializeField
 --!Tooltip("Whether to snap the cinematic camera to the orientation & perspective of the main camera when enabled")
 local _snapToMain:boolean = true
@@ -87,6 +88,7 @@ function PlayCinematic(cinematic : CinematicSequence)
         pcc = GameObject.FindObjectOfType(PlayerCharacterController);
         pcc:GetComponent(PlayerCharacterController).options.enabled = false;
     end
+    cinematicSuiteEvents.FireStartEvent(cinematic.name)
 
 end
 
@@ -110,7 +112,7 @@ function ExecuteEvent(cinematicEvent : CinematicEvent)
     if eventType == 4 then -- Set a new aim target (or clear the current one)
         cinematicEvent.waitForFinish = true -- This event must be allowed to finish before continuing
         if cinematicEvent.target ~= nil then 
-            LockToTarget(cinematicEvent.transform, duration) 
+            LockToTarget(cinematicEvent.target.transform, duration) 
         else 
             ReleaseTarget() 
         end
@@ -128,24 +130,7 @@ function ExecuteEvent(cinematicEvent : CinematicEvent)
         _cinematicElements.ShowTransitionMask(cinematicEvent.show, cinematicEvent.maskType)
     end
     if eventType == 9 then -- Custom event
-        -- ADD BEHAVIOR TO PARSE CUSTOM SCRIPTS
-        customScript = cinematicEvent.target:GetComponent(typeof(cinematicEvent.customScript))
-        customFunction = cinematicEvent.customFunction
-        -- Execute the target function if it exists
-        if customScript then
-            if customScript[customFunction]  then
-                if type(customScript[customFunction]) == "function" then
-                    customScript[customFunction](customScript) -- Call the function, passing the script as 'self'
-                else
-                    print("Error: Function '" .. customFunction .. "' is not a function. Type:"..tostring(type(customScript[customFunction])))
-                end
-            else
-                print("Error: Function '" .. customFunction .. "' not found in script '".. customScript.name .."'.")
-            end
-        else
-            print("Error: Custom script is nil!")
-        end
-
+        cinematicSuiteEvents.FireCustomEvent(cinematicEvent.customEvent)
     end
 
     if cinematicEvent.waitForFinish then _waitTimer = duration end
@@ -166,6 +151,7 @@ function self:LateUpdate()
                 end
 
                 if _activeCinematic ~= nil then _activeCinematic.OnFinish() end -- Finish the cutscene
+                cinematicSuiteEvents.FireEndEvent(_activeCinematic.name) -- Alert all listeners that the cutscene has ended
                 _activeCinematic = nil
                 Disable()
                 return
@@ -269,7 +255,7 @@ function StartTweening(duration:number)
 end
 
 function TransitionToAnchor(newConfig:CameraAnchor, transitionTime:number, newTransitionType:CameraTransitionType)
-    if newConfig == _currentCameraConfig then return end
+    --if newConfig == _currentCameraConfig then return end
     _currentCameraConfig = newConfig
     _transitionType = newTransitionType or _defaultTransitionType
 

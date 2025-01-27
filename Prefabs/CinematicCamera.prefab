@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7395383704304393983}
   - component: {fileID: 904467089160796200}
   - component: {fileID: 8473642162641927813}
+  - component: {fileID: 5452118447698504381}
   m_Layer: 0
   m_Name: CinematicCamera
   m_TagString: MainCamera
@@ -161,6 +162,29 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &5452118447698504381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881662114666349930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9d4f89c65aa591c3af45a8dcad4432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkId: 0
+  _script: {fileID: -974389366465450183, guid: 46424f5c7c85a5447970457d667244e7, type: 3}
+  _properties: []
+  _uiOutput: 0
+  _uiOutputSettings:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &1486081595765133218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +202,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644283578237891926, guid: 595540a9ae6b18a499d575ade433ebf8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658454603316335526, guid: 595540a9ae6b18a499d575ade433ebf8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4185067325005804958, guid: 595540a9ae6b18a499d575ade433ebf8,
         type: 3}
@@ -217,6 +251,21 @@ PrefabInstance:
     - target: {fileID: 4185067325005804958, guid: 595540a9ae6b18a499d575ade433ebf8,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185067325005804958, guid: 595540a9ae6b18a499d575ade433ebf8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185067325005804958, guid: 595540a9ae6b18a499d575ade433ebf8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185067325005804958, guid: 595540a9ae6b18a499d575ade433ebf8,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4185067325005804958, guid: 595540a9ae6b18a499d575ade433ebf8,

@@ -303,9 +303,7 @@ public class CinematicSequenceEditor : Editor
                             EditorGUILayout.PropertyField(eventSerializedObject.FindProperty("_waitForFinish"), new GUIContent("Wait For Finish?"));
                             break;
                         case CinematicEventType.CUSTOM:
-                            EditorGUILayout.PropertyField(eventSerializedObject.FindProperty("_target"), new GUIContent("Target Object"));
-                            EditorGUILayout.PropertyField(eventSerializedObject.FindProperty("_customScript"), new GUIContent("Custom Script"));
-                            EditorGUILayout.PropertyField(eventSerializedObject.FindProperty("_customFunction"), new GUIContent("Custom Function"));
+                            EditorGUILayout.PropertyField(eventSerializedObject.FindProperty("_customEvent"), new GUIContent("Custom Event String"));
                             break;
                     }
 
@@ -398,8 +396,8 @@ public class CinematicSequenceEditor : Editor
                 }
                 return maskString;
             case CinematicEventType.CUSTOM:
-                string customString = "Custom Function Event";
-                string functionString = eventObject.FindProperty("_customFunction").stringValue;
+                string customString = "Custom Event";
+                string functionString = eventObject.FindProperty("_customEvent").stringValue;
                 if (!string.IsNullOrEmpty(functionString))
                 {
                     customString = customString + " (" + functionString + ")";
