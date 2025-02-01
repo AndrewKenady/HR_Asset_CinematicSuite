@@ -60,7 +60,7 @@ function Fade(fadeIn:boolean, fadeTime:number, fadeType)
     _fadeTime = fadeTime or 1
     _fadeTimer = 0
     self.gameObject.SetActive(fadePanel, true)
-    newFadeType = fadeType or _cineCam.defaultFadeType
+    newFadeType = fadeType or (_cineCam and _cineCam.defaultFadeType)
     _fadeCurve = _defaultFadeCurve
     if newFadeType then _fadeCurve = newFadeType.fadeCurve end
 

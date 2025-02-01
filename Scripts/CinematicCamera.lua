@@ -261,7 +261,7 @@ function TransitionToAnchor(newConfig:CameraAnchor, transitionTime:number, newTr
 
     SetOrigin()
     SetDestinationAnchor(newConfig)
-    StartTweening(transitionTime)
+    StartTweening(transitionTime or 1)
 end
 
 function LockToTarget(newTarget:Transform, lockTime:number)

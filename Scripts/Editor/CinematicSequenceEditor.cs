@@ -271,6 +271,7 @@ public class CinematicSequenceEditor : Editor
 
                             break;
                         case CinematicEventType.CAMERA_TARGET:
+                            EditorGUI.BeginChangeCheck();
                             Transform t = EditorGUILayout.ObjectField(
                                 "Camera Target",
                                 cinematicEvent._target,
@@ -279,6 +280,10 @@ public class CinematicSequenceEditor : Editor
                             ) as Transform;
                             if (t != null)
                                 cinematicEvent._target = t.gameObject;
+                            else if (EditorGUI.EndChangeCheck())
+                            {
+                                cinematicEvent._target = null;
+                            }
                             EditorGUILayout.PropertyField(eventSerializedObject.FindProperty("_duration"));
                             break;
                         case CinematicEventType.FADE_OUT:
